@@ -1,0 +1,29 @@
+# Build outputs
+/out/
+/build/
+*.apk
+*.ap_
+*.dex
+
+# Signing material - never commit private keys
+*.jks
+*.keystore
+*.p12
+signing/
+
+# Upstream APK supplied by the builder (not distributed)
+/base/
+
+# Diagnostics / local scratch
+_scratch/
+_an/
+*.log
+*.png
+!docs/assets/*.png
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
