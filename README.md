@@ -42,12 +42,13 @@ HonorBG 是一个 Xposed 模块，把自定义壁纸铺到荣耀 MagicOS 的「�
 
 ## 安装
 
-1. 按 [`docs/BUILD.md`](docs/BUILD.md) 构建出 `out/HonorBG-1.4.6.apk`。
-2. 安装并授权：
+**预编译包**：从 [Releases](https://github.com/Hellolimt/HonorBG/releases/latest) 下载 `HonorBG-1.4.6.apk`（5,398,173 字节，SHA-256 `E3F056C1FCAEECD9BF7D2CB92F9DC2AC4CCFCE6F5D91D7EA6D3A36C1F4A65E10`），沿用原签名证书，可直接覆盖安装。想自行构建请按 [`docs/BUILD.md`](docs/BUILD.md) 生成 `out/HonorBG-1.4.6.apk`。
+
+1. 安装并授权：
    ```bash
-   adb install -r -g out/HonorBG-1.4.6.apk
+   adb install -r -g HonorBG-1.4.6.apk
    ```
-3. 在 LSPosed 中启用模块，并勾选以下 **8 个作用域**（缺一个对应页面就不会被注入，且不会有任何报错）：
+2. 在 LSPosed 中启用模块，并勾选以下 **8 个作用域**（缺一个对应页面就不会被注入，且不会有任何报错）：
    ```
    com.android.settings
    com.hihonor.systemmanager
@@ -59,8 +60,8 @@ HonorBG 是一个 Xposed 模块，把自定义壁纸铺到荣耀 MagicOS 的「�
    com.ciallo.hyperbackground
    ```
    最后一行是**模块自身**：精简设置页运行在模块进程里，缺了它打开模块图标看到的仍是上游原版 Compose UI。
-4. 首次改动 scope 后重启一次设备，让 LSPosed daemon 重新加载作用域表。
-5. 点模块桌面图标进入精简设置页，在「背景」卡选一张壁纸。
+3. 首次改动 scope 后重启一次设备，让 LSPosed daemon 重新加载作用域表。
+4. 点模块桌面图标进入精简设置页，在「背景」卡选一张壁纸。
 
 > 验证渲染效果请打开系统「设置」；验证配置界面请点**模块自己的图标**（`MainActivity`），两者不是同一个进程。
 
@@ -142,7 +143,7 @@ HonorBG/
 
 - 本仓库**新增的桥接源码与文档**采用 [MIT License](LICENSE)，Copyright © 2026 ZOQOO。
 - 本项目是基于上游 **HyperBackground 1.4.5-beta2** APK 的**增量增强**：构建脚本会把编译出的 `classes2.dex` 与 Xposed 元数据写进用户自备的原 APK，不修改其原有 `classes.dex`、资源与界面。
-- **本仓库不分发上游 APK**，也不包含任何第三方二进制。使用者需自行准备原版 APK；上游应用的一切权利归其原作者所有。
+- **仓库源码树内不存放任何 APK / 第三方二进制**；预编译包只在 [Releases](https://github.com/Hellolimt/HonorBG/releases/latest) 提供，其中包含上游 HyperBackground 的代码与资源，一切权利归其原作者所有，仅供个人学习研究使用。自行构建时请自备原版 APK。
 - 本仓库亦不分发签名密钥（`*.jks` 已忽略）。构建脚本会在本地自动生成调试密钥；发布用途请自备密钥。
 
 ---
